@@ -15,7 +15,9 @@
     [
       "@babel/preset-env",
       {
-        "loose": true
+        "loose": true,
+        "modules": false,
+        "debug": true
       }
     ],
     "@babel/preset-react"

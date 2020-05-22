@@ -104,6 +104,9 @@ export class Select extends Component {
 
   componentDidMount() {
     this.props.portal && this.props.portal.appendChild(this.dropdownRoot);
+    this.ro = new ResizeObserver(() => this.updateSelectBounds());
+    this.ro.observe(this.select.current);
+
     isomorphicWindow().addEventListener('resize', debounce(this.updateSelectBounds));
     isomorphicWindow().addEventListener('scroll', debounce(this.onScroll));
 
@@ -232,6 +235,7 @@ export class Select extends Component {
     }
 
     if (action === 'open' && !this.state.dropdown) {
+      this.updateSelectBounds();
       return this.setState({ dropdown: true });
     }
 
